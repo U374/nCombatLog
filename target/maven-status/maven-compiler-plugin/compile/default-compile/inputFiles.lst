@@ -1,0 +1,10 @@
+/workspaces/nCombatLog/src/main/java/com/ncombatlog/CombatManager.java
+/workspaces/nCombatLog/src/main/java/com/ncombatlog/KickListener.java
+/workspaces/nCombatLog/src/main/java/com/ncombatlog/ConfigManager.java
+/workspaces/nCombatLog/src/main/java/com/ncombatlog/CombatListener.java
+/workspaces/nCombatLog/src/main/java/com/ncombatlog/PlayerQuitListener.java
+/workspaces/nCombatLog/src/main/java/com/ncombatlog/DiscordWebhook.java
+/workspaces/nCombatLog/src/main/java/com/ncombatlog/NCombatLog.java
+/workspaces/nCombatLog/src/main/java/com/ncombatlog/commands/ReloadCommand.java
+/workspaces/nCombatLog/src/main/java/com/ncombatlog/CombatRestrictionsListener.java
+/workspaces/nCombatLog/src/main/java/com/ncombatlog/FileUpdater.java

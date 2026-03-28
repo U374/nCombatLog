@@ -1,0 +1,11 @@
+config-version: 1 #DO NOT CHANGE!
+
+
+prefix: "&7[&cCombatLog&7]"
+
+# Placeholder: {opponent}
+combat-start: "&c⚔ You are now in combat with {opponent}!"
+combat-end: "&a✔ You are no longer in combat!"
+
+cannot-use-command: "&cYou cannot use commands while in combat!"
+cannot-use-pearl: "&cYou cannot use ender pearls while in combat!"

@@ -1,0 +1,17 @@
+name: nCombatLog
+version: 1.2.5
+main: com.ncombatlog.NCombatLog
+api-version: 1.21
+author: nRealParadox
+description: Advanced combat logging prevention plugin with Discord integration
+
+commands:
+  ncombatlogreload:
+    description: Reload all plugin configurations
+    usage: /ncombatlogreload
+    permission: ncombatlog.reload
+
+permissions:
+  ncombatlog.reload:
+    description: Allows reloading the plugin configs
+    default: op

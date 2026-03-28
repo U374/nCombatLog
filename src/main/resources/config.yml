@@ -1,0 +1,101 @@
+# ============================================
+# nCombatLog Main Configuration
+# ============================================
+
+config-version: 9 # DO NOT CHANGE!
+
+# Combat duration (in seconds)
+# This is the time a player stays in combat after being hit.
+# Players cannot use commands or pearl (if disabled) during this period.
+combat-timer: 15
+
+# ============================================
+# Action Mode Settings
+# ============================================
+# What happens when a player logs out during combat:
+#
+# 1 → Only log to Discord (no punishment)
+# 2 → Kill player, drop all loot, AND log to Discord
+# 3 → Instantly kill player (no logs to discord)
+action-mode: 2
+
+# Weather to summon lightning on player death, Works only on mode 2 or 3
+summon-lightning-on-combat-log-death: true
+
+# Weather to summon redstone particle effect on combat tag or not
+combat-enter-particle: true
+
+# ============================================
+# Loot Handling Options
+# ============================================
+
+# Drop player's inventory items on combat log death
+# true  → Items are dropped on the ground (like normal death)
+# false → Items are NOT dropped and will be deleted
+#
+# Note:
+# - This only applies when action-mode is 2 or 3
+# - If disabled, players will lose all items without drops
+drop-item: true
+
+# ============================================
+# Timer Display Options
+# ============================================
+# Enable or disable visual combat timers
+
+# Show a BossBar timer at the top of the screen
+# true → BossBar is visible
+# false → BossBar is hidden
+bossbar-timer-show: true
+
+# Show an ActionBar timer above the hotbar
+# true → ActionBar is visible
+# false → ActionBar is hidden
+action-bar-timer-show: true
+
+# ============================================
+# Behavior Restrictions During Combat
+# ============================================
+
+# Allow players to throw Ender Pearls while in combat
+# true → Pearls can be thrown
+# false → Pearls are blocked while in combat
+allow-to-pearl: true
+
+# Allow players to use server commands while in combat
+# true → Commands can be executed
+# false → Commands are blocked while in combat
+allowed-to-use-command: false
+# allow op to use command
+allow-commands-to-ops: false
+
+# ============================================
+# Ignored Damage Sources
+# ============================================
+# These damage causes WILL NOT trigger combat
+# Useful to prevent false combat tags for environmental or PvE damage
+#
+# Examples:
+# - PROJECTILE       # Arrows, snowballs, etc.
+# - THROWN_POTION    # Splash and lingering potions
+# - ENDER_PEARL      # Ender pearl usage
+# - FALL             # Fall damage
+# - FIRE             # Fire tick damage
+# - LAVA             # Lava damage
+# - DROWNING         # Water breathing fail
+# - SUFFOCATION      # Block inside
+ignored-damage-sources:
+  - PROJECTILE
+  - THROWN_POTION
+  - ENDER_PEARL
+  - FALL
+  - FIRE
+  - LAVA
+  - DROWNING
+  - SUFFOCATION
+
+# ============================================
+# Debug Mode
+# ============================================
+# Enable console logs for plugin debugging
+debug: false

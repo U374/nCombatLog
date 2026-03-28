@@ -1,0 +1,20 @@
+# ============================================
+# nCombatLog Discord Webhook Configuration
+# ============================================
+
+config-version: 2 # DO NOT CHANGE!
+
+# Enable or disable Discord logging
+enabled: false
+
+# Paste your Discord webhook URL below
+webhook-url: ""
+
+# Embed color (supports both decimal and hex format)
+embed-color: "#ff0000"
+
+# ============================================
+# Notes:
+# - If webhook-url is empty or invalid, logs will fail silently
+# - You can use any Discord webhook from your server
+# ============================================

@@ -1,0 +1,10 @@
+com/ncombatlog/KickListener.class
+com/ncombatlog/NCombatLog.class
+com/ncombatlog/CombatRestrictionsListener.class
+com/ncombatlog/CombatManager.class
+com/ncombatlog/ConfigManager.class
+com/ncombatlog/CombatListener.class
+com/ncombatlog/DiscordWebhook.class
+com/ncombatlog/FileUpdater.class
+com/ncombatlog/commands/ReloadCommand.class
+com/ncombatlog/PlayerQuitListener.class
