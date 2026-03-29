@@ -1,5 +1,5 @@
 name: nCombatLog
-version: 1.2.5
+version: 1.2.6
 main: com.ncombatlog.NCombatLog
 api-version: 1.21
 author: nRealParadox
@@ -10,6 +10,9 @@ commands:
     description: Reload all plugin configurations
     usage: /ncombatlogreload
     permission: ncombatlog.reload
+  ncombatlog:
+    description: Main nCombatLog command
+    usage: /ncombatlog <args>
 
 permissions:
   ncombatlog.reload:

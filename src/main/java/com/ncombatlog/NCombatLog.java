@@ -1,5 +1,6 @@
 package com.ncombatlog;
 
+import com.ncombatlog.commands.CmdConfig;
 import com.ncombatlog.commands.ReloadCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -19,32 +20,53 @@ public class NCombatLog extends JavaPlugin {
     private boolean stopping = false;
     private final Set<UUID> kickedPlayers = new HashSet<>();
 
-
     @Override
     public void onEnable() {
         instance = this;
 
+        // Update config
         FileUpdater.updateConfig(this, "config.yml");
-            reloadConfig();
+        reloadConfig();
 
+        // Initialize managers
         configManager = new ConfigManager(this);
         discordWebhook = new DiscordWebhook(this);
         combatManager = new CombatManager(this);
 
         discordWebhook.reload();
 
+        // -------------------------------
+        // Register Listeners
+        // -------------------------------
         Bukkit.getPluginManager().registerEvents(new CombatListener(this), this);
         Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(this), this);
         Bukkit.getPluginManager().registerEvents(new KickListener(this), this);
-        Bukkit.getPluginManager().registerEvents(new CombatRestrictionsListener(this), this);
 
+        // Combat restrictions listener
+        CombatRestrictionsListener combatRestrictionsListener = new CombatRestrictionsListener(this);
+        Bukkit.getPluginManager().registerEvents(combatRestrictionsListener, this);
+
+        // -------------------------------
+        // Register Commands
+        // -------------------------------
         if (getCommand("ncombatlogreload") != null) {
             getCommand("ncombatlogreload").setExecutor(new ReloadCommand(this));
         } else {
             getLogger().warning("Command 'ncombatlogreload' not found in plugin.yml!");
         }
 
+        // ncombatlog main command
+        CmdConfig cmdConfig = new CmdConfig(this, combatRestrictionsListener);
+        if (getCommand("ncombatlog") != null) {
+            getCommand("ncombatlog").setExecutor(cmdConfig);
+            getCommand("ncombatlog").setTabCompleter(cmdConfig);
+        } else {
+            getLogger().warning("Command 'ncombatlog' not found in plugin.yml!");
+        }
+
+        // -------------------------------
         // Auto-clean kicked players (safety)
+        // -------------------------------
         Bukkit.getScheduler().runTaskTimer(this, () -> kickedPlayers.clear(), 20L * 60, 20L * 60);
 
         getLogger().info("nCombatLog by nRealParadox enabled!");
@@ -61,6 +83,9 @@ public class NCombatLog extends JavaPlugin {
         getLogger().info("nCombatLog disabled!");
     }
 
+    // -------------------------------
+    // Getters
+    // -------------------------------
     public static NCombatLog getInstance() {
         return instance;
     }

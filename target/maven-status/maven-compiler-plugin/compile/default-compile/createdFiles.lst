@@ -1,5 +1,6 @@
 com/ncombatlog/KickListener.class
 com/ncombatlog/NCombatLog.class
+com/ncombatlog/commands/CmdConfig.class
 com/ncombatlog/CombatRestrictionsListener.class
 com/ncombatlog/CombatManager.class
 com/ncombatlog/ConfigManager.class

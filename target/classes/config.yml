@@ -99,3 +99,7 @@ ignored-damage-sources:
 # ============================================
 # Enable console logs for plugin debugging
 debug: false
+
+# =======≠====================================
+# DO NOT CHANGE THESE MANUALLY THEY ARE HANDLED BY COMMAND
+# ============================================

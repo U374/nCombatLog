@@ -36,7 +36,7 @@ public class CombatManager {
     loc.getWorld().spawnParticle(
             Particle.DUST,
             loc.clone().add(0, 1, 0),
-            15, // amount
+            10, // amount
             0.5, 0.5, 0.5, // spread (x,y,z)
             0, // extra (ignored for REDSTONE)
             redDust

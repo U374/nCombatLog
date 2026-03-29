@@ -7,7 +7,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 <groupId>com.ncombatlog</groupId>  
 <artifactId>nCombatLog</artifactId>  
-<version>1.2.5</version>  
+<version>1.2.6</version>  
 <packaging>jar</packaging>  
 
 <name>nCombatLog</name>  
