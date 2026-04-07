@@ -22,13 +22,13 @@ public class CmdConfig implements CommandExecutor, TabCompleter {
         this.listener = listener;
     }
 
-    // -------------------------------
+
     // COMMAND EXECUTION
-    // -------------------------------
+    
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        // Command format: /ncombatlog config ender-pearl-toggle <world> <true|false>
+        // cmd format: /ncombatlog config ender-pearl-toggle <world> <true|false>
         if (args.length != 4) return false;
 
         if (!args[0].equalsIgnoreCase("config") || !args[1].equalsIgnoreCase("ender-pearl-toggle")) {
@@ -38,7 +38,6 @@ public class CmdConfig implements CommandExecutor, TabCompleter {
         String worldName = args[2];
         String value = args[3].toLowerCase();
 
-        // Validate world name
         List<String> allWorlds = listener.getAllWorlds();
         if (!allWorlds.contains(worldName)) {
             sender.sendMessage("§cWorld not found: " + worldName);
@@ -55,7 +54,7 @@ public class CmdConfig implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        // Update config
+        // update things
         List<String> disabledWorlds = plugin.getConfig().getStringList("ender-pearl-disabled-worlds");
         if (disable) {
             if (!disabledWorlds.contains(worldName)) disabledWorlds.add(worldName);
@@ -76,7 +75,7 @@ public class CmdConfig implements CommandExecutor, TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 
-        // Root command: /ncombatlog <TAB>
+        // main cmd : /ncombatlog <TAB>
         if (args.length == 1) {
             // Only "config" available for now
             return Collections.singletonList("config");
