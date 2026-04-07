@@ -37,13 +37,13 @@ public class CombatManager {
             Particle.DUST,
             loc.clone().add(0, 1, 0),
             10, // amount
-            0.5, 0.5, 0.5, // spread (x,y,z)
-            0, // extra (ignored for REDSTONE)
+            0.5, 0.5, 0.5,
+            0,
             redDust
       );
     }
 
-    // Tag players BOTH ways
+    // Tag players in combat
     public void tag(Player p1, Player p2) {
 
         if (!p1.isOnline() || !p2.isOnline()) return;
@@ -61,7 +61,7 @@ public class CombatManager {
         lastOpponent.put(p1.getUniqueId(), p2.getUniqueId());
         lastOpponent.put(p2.getUniqueId(), p1.getUniqueId());
 
-        // BossBar if enabled
+        // BossBar if enabled in config
         if (plugin.getConfig().getBoolean("bossbar-timer-show")) {
             bossBars.computeIfAbsent(p1.getUniqueId(), id -> createBossBar(p1));
             bossBars.computeIfAbsent(p2.getUniqueId(), id -> createBossBar(p2));
@@ -155,7 +155,6 @@ public class CombatManager {
                     }
                 }
 
-                // ActionBar (Spigot native)
                 if (plugin.getConfig().getBoolean("action-bar-timer-show")) {
                     String color;
 
@@ -183,7 +182,7 @@ public class CombatManager {
         lastOpponent.remove(uuid);
     }
 
-    // Helper for listeners
+    // restrictions checks from config
     public boolean canUseCommand() {
         return plugin.getConfig().getBoolean("allowed-to-use-command");
     }
