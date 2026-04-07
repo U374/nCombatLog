@@ -16,7 +16,7 @@ public class CombatRestrictionsListener implements Listener {
 
     private final NCombatLog plugin;
 
-    // Allowed safe commands
+    // Allowed commands
     private final List<String> allowedCommands = Arrays.asList(
             "msg", "tell", "w", "whisper", "r", "reply"
     );
@@ -24,7 +24,6 @@ public class CombatRestrictionsListener implements Listener {
     public CombatRestrictionsListener(NCombatLog plugin) {
         this.plugin = plugin;
 
-        // Ensure default worlds are in the config on first load
         List<String> disabledWorlds = plugin.getConfig().getStringList("ender-pearl-disabled-worlds");
 
         boolean changed = false;
@@ -39,16 +38,14 @@ public class CombatRestrictionsListener implements Listener {
             changed = true;
         }
 
-        // Save only if something changed (better practice)
         if (changed) {
             plugin.getConfig().set("ender-pearl-disabled-worlds", disabledWorlds);
             plugin.saveConfig();
         }
     }
 
-    // -------------------------------
     // BLOCK COMMANDS IN COMBAT
-    // -------------------------------
+    
     @EventHandler
     public void onCommand(PlayerCommandPreprocessEvent event) {
         var player = event.getPlayer();
@@ -70,9 +67,8 @@ public class CombatRestrictionsListener implements Listener {
         player.sendMessage(combatCmdMsg);
     }
 
-    // -------------------------------
     // BLOCK ENDER PEARL PER WORLD
-    // -------------------------------
+    
     @EventHandler
     public void onPearlUse(PlayerInteractEvent event) {
         var player = event.getPlayer();
@@ -88,7 +84,7 @@ public class CombatRestrictionsListener implements Listener {
 
         if (item == null || item.getType() != Material.ENDER_PEARL) return;
 
-        // Check per-world config
+        // Check per-world
         if (!isEnderPearlAllowedInWorld(player.getWorld().getName())) {
             event.setCancelled(true);
             String combatPearlMsg = plugin.getConfigManager().getMessage("cannot-use-pearl");
@@ -96,17 +92,13 @@ public class CombatRestrictionsListener implements Listener {
         }
     }
 
-    // -------------------------------
     // PER-WORLD CHECK
-    // -------------------------------
+    
     private boolean isEnderPearlAllowedInWorld(String worldName) {
         List<String> disabledWorlds = plugin.getConfig().getStringList("ender-pearl-disabled-worlds");
         return !disabledWorlds.contains(worldName);
     }
 
-    // -------------------------------
-    // GET ALL WORLDS (Bukkit ONLY)
-    // -------------------------------
     public List<String> getAllWorlds() {
         List<String> worlds = new ArrayList<>();
 
