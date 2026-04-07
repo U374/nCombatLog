@@ -26,9 +26,6 @@ public class ConfigManager {
         loadMainConfig();
     }
 
-    /**
-     * Reload discordhook.yml
-     */
     public void reloadDiscord() {
         FileUpdater.updateConfig(plugin, "discordhook.yml");
 
@@ -36,9 +33,6 @@ public class ConfigManager {
         discordConfig = YamlConfiguration.loadConfiguration(file);
     }
 
-    /**
-     * Reload message.yml
-     */
     public void reloadMessages() {
         FileUpdater.updateConfig(plugin, "message.yml");
 
@@ -46,9 +40,6 @@ public class ConfigManager {
         messagesConfig = YamlConfiguration.loadConfiguration(file);
     }
 
-    /**
-     * Load main config values (config.yml)
-     */
     public void loadMainConfig() {
         ignoredSources = plugin.getConfig()
                 .getStringList("ignored-damage-sources")
@@ -57,43 +48,26 @@ public class ConfigManager {
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Get discordhook.yml
-     */
     public FileConfiguration getDiscordConfig() {
         return discordConfig;
     }
 
-    /**
-     * Get messages.yml
-     */
     public FileConfiguration getMessagesConfig() {
         return messagesConfig;
     }
 
-    /**
-     * Get Discord webhook URL
-     */
     public String getDiscordWebhook() {
         if (discordConfig == null) return null;
         return discordConfig.getString("webhook-url", "");
     }
 
-    /**
-     * Check if damage cause is ignored
-     */
     public boolean isIgnored(String cause) {
         if (cause == null) return false;
         return ignoredSources.contains(cause.toUpperCase());
     }
 
-    // ============================================
     // MESSAGE SYSTEM
-    // ============================================
-
-    /**
-     * Get message with prefix
-     */
+    
     public String getMessage(String path) {
         if (messagesConfig == null) return "Messages not loaded!";
 
@@ -103,19 +77,13 @@ public class ConfigManager {
         return color(prefix + " " + msg);
     }
 
-    /**
-     * Get message WITHOUT prefix
-     */
     public String getRawMessage(String path) {
         if (messagesConfig == null) return "Messages not loaded!";
 
         String msg = messagesConfig.getString(path, "Missing message: " + path);
         return color(msg);
     }
-
-    /**
-     * Color utility
-     */
+    
     private String color(String msg) {
         return msg.replace("&", "§");
     }
