@@ -24,20 +24,18 @@ public class NCombatLog extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
-        // Update config
+        // updating config files
         FileUpdater.updateConfig(this, "config.yml");
         reloadConfig();
 
-        // Initialize managers
+        // managers
         configManager = new ConfigManager(this);
         discordWebhook = new DiscordWebhook(this);
         combatManager = new CombatManager(this);
 
         discordWebhook.reload();
 
-        // -------------------------------
-        // Register Listeners
-        // -------------------------------
+        // register listners here
         Bukkit.getPluginManager().registerEvents(new CombatListener(this), this);
         Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(this), this);
         Bukkit.getPluginManager().registerEvents(new KickListener(this), this);
@@ -46,9 +44,7 @@ public class NCombatLog extends JavaPlugin {
         CombatRestrictionsListener combatRestrictionsListener = new CombatRestrictionsListener(this);
         Bukkit.getPluginManager().registerEvents(combatRestrictionsListener, this);
 
-        // -------------------------------
-        // Register Commands
-        // -------------------------------
+        // init cmd
         if (getCommand("ncombatlogreload") != null) {
             getCommand("ncombatlogreload").setExecutor(new ReloadCommand(this));
         } else {
@@ -64,9 +60,7 @@ public class NCombatLog extends JavaPlugin {
             getLogger().warning("Command 'ncombatlog' not found in plugin.yml!");
         }
 
-        // -------------------------------
-        // Auto-clean kicked players (safety)
-        // -------------------------------
+        // manage kicked players
         Bukkit.getScheduler().runTaskTimer(this, () -> kickedPlayers.clear(), 20L * 60, 20L * 60);
 
         getLogger().info("nCombatLog by nRealParadox enabled!");
@@ -83,9 +77,6 @@ public class NCombatLog extends JavaPlugin {
         getLogger().info("nCombatLog disabled!");
     }
 
-    // -------------------------------
-    // Getters
-    // -------------------------------
     public static NCombatLog getInstance() {
         return instance;
     }
